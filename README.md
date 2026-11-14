@@ -1,5 +1,7 @@
 # Sequential Companion
 
+**[▶ Open the app](https://shoogaze.github.io/sequential-companion/)**  ·  works in the browser, installs to the Home Screen
+
 A single-file mobile web app that writes step-sequencer patterns for Digitakt 2 and other 16-step grooveboxes. It is the sister project of [Producer Companion](https://github.com/SHOOGAZE/producer-companion) and shares its look: Braun-notebook monochrome, one orange lamp, IBM Plex type, dot-matrix logo, glass LCD windows.
 
 It does not play sounds from the patterns and it is not a sequencer. It makes a pattern card you read and punch into your own machine. The only sounds are the mechanical key clicks of the interface itself.
@@ -33,13 +35,25 @@ Keys: `1` `2` `3` switch Library / Generator / Saved, `G` or `Space` generate, `
 |---|---|---|---|
 | ![](screenshots/05-variations.png) | ![](screenshots/06-groove-midi.png) | ![](screenshots/07-dark-library.png) | ![](screenshots/08-saved.png) |
 
+| Fidget |
+|---|
+| ![](screenshots/09-fidget.png) |
+
+**Share as a picture and print on A4**
+
+<img src="screenshots/10-share-png.png" width="420">
+
+<img src="screenshots/11-print-a4.png" width="300">
+
 **Desktop and tablet**
 
-![](screenshots/12-desktop.png)
+<img src="screenshots/12-desktop.png" width="640">
 
-![](screenshots/13-tablet.png)
+<img src="screenshots/13-tablet.png" width="420">
 
 ## Run
+
+Live build: https://shoogaze.github.io/sequential-companion/
 
 Open `index.html` in a browser. No build step. For GitHub Pages: Settings → Pages → deploy from branch `main`, root.
 
@@ -47,7 +61,7 @@ Open `index.html` in a browser. No build step. For GitHub Pages: Settings → Pa
 
 ## Companion project
 
-[Producer Companion](https://github.com/SHOOGAZE/producer-companion) turns genre, tempo and mood into a track concept, names and album ideas. Use it to decide what the track is, then come here for the drum pattern to start it.
+[Producer Companion](https://github.com/SHOOGAZE/producer-companion) ([live](https://shoogaze.github.io/producer-companion/)) turns genre, tempo and mood into a track concept, names and album ideas. Use it to decide what the track is, then come here for the drum pattern to start it.
 
 ## License
 

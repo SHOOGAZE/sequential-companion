@@ -33,16 +33,6 @@ Keys: `1` `2` `3` switch Library / Generator / Saved, `G` or `Space` generate, `
 |---|---|---|---|
 | ![](screenshots/05-variations.png) | ![](screenshots/06-groove-midi.png) | ![](screenshots/07-dark-library.png) | ![](screenshots/08-saved.png) |
 
-| Fidget |
-|---|
-| ![](screenshots/09-fidget.png) |
-
-**Share as a picture and print on A4**
-
-![](screenshots/10-share-png.png)
-
-![](screenshots/11-print-a4.png)
-
 **Desktop and tablet**
 
 ![](screenshots/12-desktop.png)

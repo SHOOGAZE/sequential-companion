@@ -688,9 +688,10 @@ html:not([lang=ru]):not([lang=en]) .langmenu .key{font-size:13px;padding-left:10
   .vt,.sec:has(.capb){display:none!important}
   .pg .pc{height:9mm!important}
   .sec{break-inside:avoid}
-  .sheet::after{content:"SEQUENTIAL COMPANION · KIRILL KINDERHART";display:block;padding:8px 16px;font:400 9px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;border-top:1px solid #000}
+  .sheet::after{content:"SEQUENTIAL COMPANION";display:block;padding:8px 16px;font:400 9px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;border-top:1px solid #000}
 }
 .wm .nm{height:18.5px!important;width:auto}
+.lkrow{margin:12px 0 2px!important;letter-spacing:.12em}.lkrow a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:1px}.lkrow b{color:var(--ink2);font-weight:600}
 </style>
 </head>
 <body>
@@ -792,6 +793,7 @@ html:not([lang=ru]):not([lang=en]) .langmenu .key{font-size:13px;padding-left:10
       <div class="out" id="genOut"></div>
     </section>
   </main>
+  <p class="foot lkrow" id="lkRow"></p>
   <p class="foot" data-t="foot"></p>
   <p class="foot kbd" data-t="hint_keys"></p>
 </div>
@@ -1227,7 +1229,7 @@ ru:{
  ok_copy:'Скопировано',ok_save:'Сохранено',fail_copy:'Не удалось',ok_png:'PNG готов',bad_seed:'Неверный код',
  snd_on:'Звук включён',snd_off:'Звук выключен',snd_s_on:'Звук вкл',snd_s_off:'Звук выкл',
  theme_t:'Тема',sk_auto:'авто',sk_white:'белая',sk_grey:'серая',sk_dark:'тёмная',
- foot:'Sequential Companion · Kirill Kinderhart',hint_keys:'Клавиши: 1–3 модули · G или пробел крутить · ←→ пресеты/сид · A B F вариации · S сохранить · E MIDI · C текст · M звук',
+ foot:'Значения — отправная точка. Решают ваши уши.',hint_keys:'Клавиши: 1–3 модули · G или пробел крутить · ←→ пресеты/сид · A B F вариации · S сохранить · E MIDI · C текст · M звук',
  lock_on:'Закреплён',lock_off:'Закрепить',fold_show:'показать',fold_hide:'скрыть',
  tg_key:'Тон',s_var:'Вариация',s_feel:'Грув: микротайминг',mt:'сдвиг',len:'длина',a_midi:'Скачать MIDI (A A B FILL)',ok_midi:'MIDI сохранён',
  fid_hint:'тап — шаг · кнопки — ряд',fid_close:'Закрыть',fk_run:'Ход',fk_rnd:'Случайно',fk_inv:'Инверс',fk_clr:'Сброс',
@@ -1249,7 +1251,7 @@ en:{
  ok_copy:'Copied',ok_save:'Saved',fail_copy:'Failed',ok_png:'PNG ready',bad_seed:'Bad code',
  snd_on:'Sound on',snd_off:'Sound off',snd_s_on:'Sound on',snd_s_off:'Sound off',
  theme_t:'Theme',sk_auto:'auto',sk_white:'white',sk_grey:'grey',sk_dark:'dark',
- foot:'Sequential Companion · Kirill Kinderhart',hint_keys:'Keys: 1–3 modules · G or Space roll · ←→ presets/seed · A B F variations · S save · E MIDI · C copy · M sound',
+ foot:'Pattern values are starting points. Your ears decide.',hint_keys:'Keys: 1–3 modules · G or Space roll · ←→ presets/seed · A B F variations · S save · E MIDI · C copy · M sound',
  lock_on:'Pinned',lock_off:'Pin',fold_show:'show',fold_hide:'hide',
  tg_key:'Key',s_var:'Variation',s_feel:'Groove: micro-timing',mt:'shift',len:'length',a_midi:'Download MIDI (A A B FILL)',ok_midi:'MIDI saved',
  fid_hint:'tap = step · keys = row',fid_close:'Close',fk_run:'Run',fk_rnd:'Random',fk_inv:'Invert',fk_clr:'Clear',
@@ -1694,7 +1696,7 @@ function drawPNG(){
   if(a.cl.length>5)x.fillText(`+${a.cl.length-5}`,60,ny+34+5*22);if(a.pl.length>5)x.fillText(`+${a.pl.length-5}`,640,ny+34+5*22);
   const dm=(s,px,py,d)=>{let ox=px;for(const ch of s){const g=DF[ch];if(!g)continue;g.split(' ').forEach((row,r)=>{for(let k=0;k<5;k++)if(row[k]==='1'){x.beginPath();x.arc(ox+k*d,py+r*d,d*.38,0,7);x.fill();}});ox+=6*d;}};
   x.fillStyle=ink;dm(MARK,60,H-76,5);x.fillStyle=dim;dm('SEQUENTIAL COMPANION',130,H-76,2.6);
-  x.font=`400 12px ${F}`;x.textAlign='right';x.fillText(`${p.id} · ${p.bpm} BPM · KIRILL KINDERHART`,W-60,H-52);x.textAlign='left';
+  x.font=`400 12px ${F}`;x.textAlign='right';x.fillText(`${p.id} · ${p.bpm} BPM`,W-60,H-52);x.textAlign='left';
   return c;
 }
 function savePNG(){
@@ -2104,6 +2106,7 @@ function runBoot(){const q=new URLSearchParams(location.search).get('bv');const 
 applySkin(skin,false);
 $('.mark').innerHTML=dotSvg(MARK,4,1.7);$('.wm').innerHTML=dotLines(BRAND,2,.85,'nm');
 $('#btBrand').innerHTML=dotSvg(MARK,4,1.7,'m')+dotLines(BRAND,2,.85,'n');
+{const q=new URLSearchParams(location.search).get('g');if(q&&DNA[q]){state.genre=q;state.mode='gen';}if(q)history.replaceState(null,'',location.pathname);}
 buildUI();applyStatic();
 if(state.mode==='gen'){$('#p-lib').hidden=true;$('#p-gen').hidden=false;regen();}else loadLib();
 state.cardNo=state.count;
@@ -2111,6 +2114,16 @@ const setStk=()=>{const s=$('.stick');if(s)document.documentElement.style.setPro
 addEventListener('resize',setStk);addEventListener('load',setStk);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(setStk);
 show(state.mode);setStk();svStore();runBoot();
 window.__SC={gen,fromLib,mutate,DNA,LIB,GENRES,asText,state,mkCode,parseCode};
+
+/* ---- companion link: jump between Producer / Sequential / Patch with genre and mood in the URL ---- */
+const LK={PC2SC:{tech:'TECHNO',techno:'TECHNO',hard:'TECHNO',acid:'TECHNO',house:'HOUSE',mini:'HOUSE',dub:'DUB',amb:'AMBIENT',drone:'AMBIENT',elec:'ELECTRO',idm:'IDM',dnb:'DNB',trance:'TRANCE',psy:'TRANCE',synth:'SYNTHWAVE',vapor:'SYNTHWAVE',breaks:'BREAKS',jungle:'JUNGLE',ukg:'UKG',dubstep:'DUBSTEP',ebm:'EBM',dark:'EBM',italo:'DISCO',foot:'FOOTWORK'},SC2PC:{TECHNO:'techno',HOUSE:'house',DNB:'dnb',UKG:'ukg',TRAP:'boom',ELECTRO:'elec',AMBIENT:'amb',DUB:'dub',FOOTWORK:'foot',BREAKS:'breaks',TRANCE:'trance',SYNTHWAVE:'synth',DUBSTEP:'dubstep',JUNGLE:'jungle',DISCO:'italo',GABBER:'hard',EBM:'ebm',AMAPIANO:'house',IDM:'idm'},PCM:{lofi:['warm','keys'],tech:['aggr','bass'],amb:['calm','pad'],dub:['dreamy','pad'],elec:['dry','bass'],idm:['evolve','pluck'],trip:['dark','keys'],dnb:['dirty','bass'],acid:['dirty','bass'],dark:['dark','pad'],mini:['dry','pluck'],drone:['dark','drone'],house:['warm','keys'],techno:['dark','bass'],hard:['aggr','bass'],trance:['bright','lead'],psy:['evolve','lead'],synth:['bright','pad'],vapor:['dreamy','pad'],breaks:['dirty','bass'],jungle:['dirty','bass'],ukg:['warm','bass'],dubstep:['dirty','bass'],boom:['warm','keys'],foot:['dry','bass'],ebm:['dirty','bass'],down:['warm','pad'],italo:['bright','lead']},SCX:{TRAP:['dark','bass'],LATIN:['warm','keys'],KRAUT:['evolve','lead'],AFRO:['warm','keys'],DRILL:['dark','bass'],REGGAETON:['dry','bass'],JERSEY:['dirty','bass'],DANCEHALL:['dry','bass']},
+  apps:[['pc','PRODUCER','/producer-companion/'],['sc','SEQUENTIAL','/sequential-companion/'],['pt','PATCH','/patch-companion/']],me:'sc'};
+const lkCtx=t=>{let g=state.genre;if(g==='ANY'&&state.pat&&state.pat.genre)g=state.pat.genre;const o={};if(state.pat&&state.pat.bpm)o.bpm=state.pat.bpm;if(t==='pc'&&LK.SC2PC[g])o.g=g;if(t==='pt'){const pc=LK.SC2PC[g],m=(pc&&LK.PCM[pc])||LK.SCX[g];if(m){o.mood=m[0];o.type=m[1];}}return o;};
+const lkUrl=t=>{const a=LK.apps.find(x=>x[0]===t),q=new URLSearchParams(lkCtx(t)).toString();return (location.protocol==='file:'?'..':location.origin)+a[2]+(q?'?'+q:'');};
+window.__lkUrl=lkUrl;
+(function(){const el=document.getElementById('lkRow');if(!el)return;el.innerHTML=LK.apps.map(a=>a[0]===LK.me?'<b>'+a[1]+'</b>':'<a href="'+a[2]+'" data-lk="'+a[0]+'">'+a[1]+'</a>').join(' · ');
+  document.addEventListener('click',e=>{const a=e.target.closest&&e.target.closest('a[data-lk]');if(!a)return;e.preventDefault();location.href=lkUrl(a.dataset.lk);});})();
+
 })();
 
 </script>

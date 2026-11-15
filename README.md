@@ -61,6 +61,8 @@ Open `index.html` in a browser. No build step. For GitHub Pages: Settings → Pa
 
 ## Companion project
 
+**[Patch Companion](https://github.com/SHOOGAZE/patch-companion)** ([live](https://shoogaze.github.io/patch-companion/)) is the third app of the family: patch cards for 50 hardware synths, knob positions 0–10, by sound type and mood. The footer links all three and carries genre along.
+
 [Producer Companion](https://github.com/SHOOGAZE/producer-companion) ([live](https://shoogaze.github.io/producer-companion/)) turns genre, tempo and mood into a track concept, names and album ideas. Use it to decide what the track is, then come here for the drum pattern to start it.
 
 ## License
